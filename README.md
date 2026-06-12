@@ -1,34 +1,34 @@
 # Guess The Number 2 (C#)
 
 ## Description
-Konsolowa gra "Zgadnij liczbę 2" napisana w podejściu obiektowym w C#.
-Gracz może wybrać standardową rozgrywkę lub tryb "Nowa gra plus" z przelosowywaniem ukrytej liczby co 6/7/8 prób.
-Wyniki są zapisywane do Hall of Fame wraz z czasem trwania w sekundach.
+A console game "Guess the Number 2" written in an object-oriented approach in C#.
+The player can choose a standard game or "New Game Plus" mode with the hidden number being redrawn every 6/7/8 attempts.
+Results are saved to the Hall of Fame along with the duration time in seconds.
 
-## Jak zbudować
+## How to Build
 
 ```
 dotnet build
 ```
 
-## Jak uruchomić
+## How to Run
 
 ```
 dotnet run
 ```
 
-## Funkcje
+## Features
 
-* ekran powitalny z opcjami: nowa gra, Hall of Fame, ustawienia, wyjście
-* ustawienia: zmiana języka (PL/EN), przełączanie pytania o tryb zakładu, czyszczenie Hall of Fame
-* Hall of Fame przechowuje TOP5 wyników dla każdego poziomu trudności
-* wyświetlanie aktualnych ustawień na ekranie powitalnym
-* tryb zakładu dostępny w standardowej rozgrywce (jeśli włączony)
-* tryb Nowa gra plus bez zakładu, z przelosowywaniem ukrytej liczby co 6/7/8 prób
-* po każdej wygranej podawany jest czas gry w sekundach
-* przy równych próbach wyżej klasyfikowany jest krótszy czas gry
+* welcome screen with options: new game, Hall of Fame, settings, exit
+* settings: change language (PL/EN), toggle betting mode question, clear Hall of Fame
+* Hall of Fame stores TOP 5 results for each difficulty level
+* display current settings on the welcome screen
+* betting mode available in standard gameplay (if enabled)
+* New Game Plus mode without betting, with hidden number redrawn every 6/7/8 attempts
+* after each win, the game time in seconds is provided
+* with equal attempts, shorter game time is ranked higher
 
-## Pliki
+## Files
 
 * `Program.cs`
 * `GameApplication.cs`
@@ -42,7 +42,7 @@ dotnet run
 * `Localizer.cs`
 * `guess-the-number.csproj`
 
-## Uwagi
+## Notes
 
-* Gra tworzy pliki `settings.json` i `halloffame.json` w katalogu uruchomieniowym.
-* Opcja Hall of Fame pojawia się dopiero po zapisaniu chociaż jednego wyniku.
+* The game creates `settings.json` and `halloffame.json` files in the application directory.
+* The Hall of Fame option appears only after saving at least one result.
