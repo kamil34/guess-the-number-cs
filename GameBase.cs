@@ -1,5 +1,6 @@
 using System;
 
+// Base class for all game implementations - common game logic and utilities
 public abstract class GameBase : IGame
 {
     protected readonly GameSettings settings;
@@ -14,6 +15,7 @@ public abstract class GameBase : IGame
 
     public abstract ScoreEntry? Play(Difficulty difficulty);
 
+    // Read integer with validation
     protected int ReadInteger(string prompt, int minimum, int maximum)
     {
         while (true)
@@ -29,6 +31,7 @@ public abstract class GameBase : IGame
         }
     }
 
+    // Pause and wait
     protected void Pause()
     {
         Console.WriteLine();
@@ -36,6 +39,7 @@ public abstract class GameBase : IGame
         Console.ReadKey(true);
     }
 
+    // Complete game and get results
     protected ScoreEntry CompleteGame(Difficulty difficulty, int attempts, double durationSeconds, bool newGamePlus)
     {
         Console.WriteLine(localizer.Get("WonMessage"));

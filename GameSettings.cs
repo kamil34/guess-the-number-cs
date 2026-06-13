@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+// Game settings - stores and manages user preferences (language, bet mode)
 public class GameSettings
 {
     public Language Language { get; set; } = Language.Polish;
@@ -11,6 +12,7 @@ public class GameSettings
     [JsonIgnore]
     private static string SettingsFileName => "settings.json";
 
+    // Load settings from file
     public static GameSettings Load()
     {
         try
@@ -32,6 +34,7 @@ public class GameSettings
         return new GameSettings();
     }
 
+    // Save settings to file
     public void Save()
     {
         try

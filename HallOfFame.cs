@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+// Hall of Fame - manages player scores and rankings
 public class HallOfFame
 {
     private List<ScoreEntry> entries = new();
@@ -19,6 +20,7 @@ public class HallOfFame
     [JsonIgnore]
     private static string HallOfFameFileName => "halloffame.json";
 
+    // Load from JSON file
     public static HallOfFame Load()
     {
         try
@@ -40,6 +42,7 @@ public class HallOfFame
         return new HallOfFame();
     }
 
+    // Save to file
     public void Save()
     {
         try
@@ -55,6 +58,7 @@ public class HallOfFame
         SaveToText();
     }
 
+    // Save to text file
     private void SaveToText()
     {
         try
@@ -92,6 +96,7 @@ public class HallOfFame
         }
     }
 
+    // Record operations
     public bool HasRecords => entries.Count > 0;
 
     public void Add(ScoreEntry entry)
@@ -99,6 +104,7 @@ public class HallOfFame
         entries.Add(entry);
     }
 
+    // Get top scores for difficulty
     public List<ScoreEntry> GetTopForDifficulty(Difficulty difficulty, int topCount)
     {
         return entries
@@ -110,6 +116,7 @@ public class HallOfFame
             .ToList();
     }
 
+    // Clear records
     public void Clear()
     {
         entries.Clear();

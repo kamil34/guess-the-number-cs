@@ -1,12 +1,15 @@
 using System;
 using System.Diagnostics;
 
+// Standard Guess the Number game - player guesses a hidden number
 public class GuessNumberGame : GameBase
 {
     public GuessNumberGame(GameSettings settings, Localizer localizer)
         : base(settings, localizer)
     {
     }
+
+    // Number guessing game logic
     public override ScoreEntry? Play(Difficulty difficulty)
     {
         int maxValue = difficulty switch
@@ -20,6 +23,7 @@ public class GuessNumberGame : GameBase
         int secret = random.Next(1, maxValue + 1);
         int maxAttempts = int.MaxValue;
 
+        // Bet mode
         if (settings.AskBet)
         {
             Console.WriteLine();
@@ -33,6 +37,7 @@ public class GuessNumberGame : GameBase
             }
         }
 
+        // Game loop
         var stopwatch = Stopwatch.StartNew();
         int attemptNumber = 1;
 

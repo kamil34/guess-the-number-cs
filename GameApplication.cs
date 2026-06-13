@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+// Main application controller - handles menu navigation and game flow
 public class GameApplication
 {
     private readonly GameSettings settings;
@@ -15,6 +16,7 @@ public class GameApplication
         localizer = new Localizer(settings.Language);
     }
 
+    // Main application loop
     public void Run()
     {
         while (!exitRequested)
@@ -23,6 +25,7 @@ public class GameApplication
         }
     }
 
+    // Welcome screen
     private void ShowWelcomeScreen()
     {
         localizer.SetLanguage(settings.Language);
@@ -61,6 +64,7 @@ public class GameApplication
         exitRequested = true;
     }
 
+    // Settings screen
     private void ShowSettingsScreen()
     {
         localizer.SetLanguage(settings.Language);
@@ -100,6 +104,7 @@ public class GameApplication
         }
     }
 
+    // Language selection
     private void ChooseLanguage()
     {
         Console.Clear();
@@ -115,6 +120,7 @@ public class GameApplication
         Pause();
     }
 
+    // Clear hall of fame
     private void ClearHallOfFame()
     {
         Console.WriteLine(localizer.Get("ConfirmClearHallOfFame"));
@@ -130,6 +136,7 @@ public class GameApplication
         }
     }
 
+    // Start new game
     private void StartNewGame()
     {
         localizer.SetLanguage(settings.Language);
@@ -169,6 +176,7 @@ public class GameApplication
         }
     }
 
+    // Difficulty selection
     private Difficulty ChooseDifficulty()
     {
         Console.WriteLine();
@@ -188,6 +196,7 @@ public class GameApplication
         };
     }
 
+    // Hall of fame display
     private void ShowHallOfFameScreen()
     {
         while (true)

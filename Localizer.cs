@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+// Localization/translation manager - provides text in Polish and English
 public class Localizer
 {
     private Language language;

@@ -1,5 +1,6 @@
 using System;
 
+// Score entry data model - stores player's game results in Hall of Fame
 public class ScoreEntry
 {
     public string PlayerName { get; set; } = string.Empty;
