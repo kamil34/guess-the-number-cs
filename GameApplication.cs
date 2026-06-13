@@ -152,17 +152,12 @@ public class GameApplication
             return;
         }
 
-        ScoreEntry? entry = null;
-        if (choice == 1)
-        {
-            var game = new GuessNumberGame(settings, localizer);
-            entry = game.Play(difficulty);
-        }
-        else
-        {
-            var game = new NewGamePlus(settings, localizer);
-            entry = game.Play(difficulty);
-        }
+        // Use IGame interface for polymorphic behavior
+        IGame game = choice == 1
+            ? new GuessNumberGame(settings, localizer)
+            : new NewGamePlus(settings, localizer);
+
+        ScoreEntry? entry = game.Play(difficulty);
 
         if (entry != null)
         {

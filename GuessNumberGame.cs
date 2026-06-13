@@ -1,19 +1,13 @@
 using System;
 using System.Diagnostics;
 
-public class GuessNumberGame
+public class GuessNumberGame : GameBase
 {
-    private readonly GameSettings settings;
-    private readonly Localizer localizer;
-    private readonly Random random = new();
-
     public GuessNumberGame(GameSettings settings, Localizer localizer)
+        : base(settings, localizer)
     {
-        this.settings = settings;
-        this.localizer = localizer;
     }
-
-    public ScoreEntry? Play(Difficulty difficulty)
+    public override ScoreEntry? Play(Difficulty difficulty)
     {
         int maxValue = difficulty switch
         {
@@ -68,42 +62,5 @@ public class GuessNumberGame
         }
 
         return null;
-    }
-
-    private ScoreEntry CompleteGame(Difficulty difficulty, int attempts, double durationSeconds, bool newGamePlus)
-    {
-        Console.WriteLine(localizer.Get("WonMessage"));
-        Console.WriteLine(localizer.Get("TimeResult", durationSeconds));
-        Console.WriteLine(localizer.Get("EnterPlayerName"));
-
-        string? playerName = Console.ReadLine()?.Trim();
-        if (string.IsNullOrWhiteSpace(playerName))
-        {
-            playerName = "Player";
-        }
-
-        return ScoreEntry.Create(playerName, difficulty, attempts, durationSeconds, newGamePlus);
-    }
-
-    private int ReadInteger(string prompt, int minimum, int maximum)
-    {
-        while (true)
-        {
-            Console.Write(prompt + " ");
-            string? input = Console.ReadLine();
-            if (int.TryParse(input, out int value) && value >= minimum && value <= maximum)
-            {
-                return value;
-            }
-
-            Console.WriteLine(localizer.Get("InvalidOption"));
-        }
-    }
-
-    private void Pause()
-    {
-        Console.WriteLine();
-        Console.WriteLine(localizer.Get("PressAnyKey"));
-        Console.ReadKey(true);
     }
 }
