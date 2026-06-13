@@ -33,21 +33,12 @@ public class GameApplication
         Console.WriteLine(localizer.Get("CurrentSettings", settings.Language.ToString(), settings.AskBet ? localizer.Get("Yes") : localizer.Get("No")));
         Console.WriteLine();
         Console.WriteLine("1) " + localizer.Get("NewGame"));
-
-        var optionIndex = 2;
-        if (hallOfFame.HasRecords)
-        {
-            Console.WriteLine(optionIndex + ") " + localizer.Get("HallOfFame"));
-            optionIndex++;
-        }
-
-        Console.WriteLine(optionIndex + ") " + localizer.Get("Settings"));
-        optionIndex++;
-        Console.WriteLine(optionIndex + ") " + localizer.Get("Exit"));
+        Console.WriteLine("2) " + localizer.Get("HallOfFame"));
+        Console.WriteLine("3) " + localizer.Get("Settings"));
+        Console.WriteLine("4) " + localizer.Get("Exit"));
         Console.WriteLine();
 
-        int optionCount = optionIndex;
-        int choice = ReadInteger(localizer.Get("ChooseOption"), 1, optionCount);
+        int choice = ReadInteger(localizer.Get("ChooseOption"), 1, 4);
 
         if (choice == 1)
         {
@@ -55,14 +46,13 @@ public class GameApplication
             return;
         }
 
-        if (hallOfFame.HasRecords && choice == 2)
+        if (choice == 2)
         {
             ShowHallOfFameScreen();
             return;
         }
 
-        int settingsIndex = hallOfFame.HasRecords ? 3 : 2;
-        if (choice == settingsIndex)
+        if (choice == 3)
         {
             ShowSettingsScreen();
             return;

@@ -47,7 +47,6 @@ public class GuessNumberGame
             Console.Clear();
             Console.WriteLine($"========== {localizer.Get(difficulty.ToString())} ==========");
             Console.WriteLine(localizer.Get("AttemptNumber", attemptNumber));
-            Console.WriteLine(localizer.Get("EnterGuessPrompt"));
             int guess = ReadInteger(localizer.Get("EnterGuessPrompt"), 1, maxValue);
 
             if (guess == secret)

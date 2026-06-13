@@ -32,7 +32,6 @@ public class NewGamePlus
             Console.Clear();
             Console.WriteLine($"========== {localizer.Get(difficulty.ToString())} - {localizer.Get("NewGamePlus")} ==========");
             Console.WriteLine(localizer.Get("AttemptNumber", attemptNumber));
-            Console.WriteLine(localizer.Get("EnterGuessPrompt"));
             int guess = ReadInteger(localizer.Get("EnterGuessPrompt"), 1, maxValue);
 
             if (guess == secret)

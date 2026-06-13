@@ -7,7 +7,14 @@ using System.Text.Json.Serialization;
 
 public class HallOfFame
 {
-    private readonly List<ScoreEntry> entries = new();
+    private List<ScoreEntry> entries = new();
+
+    [JsonPropertyName("entries")]
+    public List<ScoreEntry> Entries
+    {
+        get => entries;
+        set => entries = value ?? new();
+    }
 
     [JsonIgnore]
     private static string HallOfFameFileName => "halloffame.json";
@@ -40,6 +47,45 @@ public class HallOfFame
             var options = new JsonSerializerOptions { WriteIndented = true };
             string content = JsonSerializer.Serialize(this, options);
             File.WriteAllText(HallOfFameFileName, content);
+        }
+        catch
+        {
+        }
+
+        SaveToText();
+    }
+
+    private void SaveToText()
+    {
+        try
+        {
+            var lines = new List<string> { "HALL OF FAME - SCORES", "==================", "" };
+            
+            var difficulties = new[] { Difficulty.Easy, Difficulty.Medium, Difficulty.Hard };
+            
+            foreach (var difficulty in difficulties)
+            {
+                var topScores = GetTopForDifficulty(difficulty, int.MaxValue);
+                
+                if (topScores.Count == 0)
+                {
+                    continue;
+                }
+                
+                lines.Add($"{difficulty} Difficulty:");
+                lines.Add(new string('-', 50));
+                
+                for (int index = 0; index < topScores.Count; index++)
+                {
+                    var entry = topScores[index];
+                    string ngpMarker = entry.NewGamePlus ? " [NG+]" : "";
+                    lines.Add($"{index + 1}. {entry.PlayerName} - {entry.Attempts} attempts - {entry.DurationSeconds:F1}s - {entry.Date:yyyy-MM-dd HH:mm:ss}{ngpMarker}");
+                }
+                
+                lines.Add("");
+            }
+            
+            File.WriteAllLines("scores.txt", lines);
         }
         catch
         {
