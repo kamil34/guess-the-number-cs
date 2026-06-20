@@ -4,6 +4,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 // Game settings - stores and manages user preferences (language, bet mode)
+// Encapsulation
 public class GameSettings
 {
     public Language Language { get; set; } = Language.Polish;
