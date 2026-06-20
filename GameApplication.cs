@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+// Encapsualtion
 public class GameApplication
 {
     private readonly GameSettings settings;

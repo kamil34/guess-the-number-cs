@@ -8,6 +8,7 @@ public class GuessNumberGame : GameBase
     {
     }
 
+    //Polymorphism example
     public override ScoreEntry? Play(Difficulty difficulty)
     {
         int maxValue = difficulty switch

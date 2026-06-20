@@ -1,6 +1,6 @@
 using System;
 
-// C# Abstraction
+// Abstraction & Inheritance example with interface 
 public abstract class GameBase : IGame
 {
     protected readonly GameSettings settings;
