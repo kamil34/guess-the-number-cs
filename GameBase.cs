@@ -1,6 +1,6 @@
 using System;
 
-// Base class for all game implementations - common game logic and utilities
+// C# Abstraction
 public abstract class GameBase : IGame
 {
     protected readonly GameSettings settings;
@@ -15,7 +15,6 @@ public abstract class GameBase : IGame
 
     public abstract ScoreEntry? Play(Difficulty difficulty);
 
-    // Read integer with validation
     protected int ReadInteger(string prompt, int minimum, int maximum)
     {
         while (true)
@@ -27,24 +26,22 @@ public abstract class GameBase : IGame
                 return value;
             }
 
-            Console.WriteLine(localizer.Get("InvalidOption"));
+            Console.WriteLine(localizer.Text.InvalidOption);
         }
     }
 
-    // Pause and wait
     protected void Pause()
     {
         Console.WriteLine();
-        Console.WriteLine(localizer.Get("PressAnyKey"));
+        Console.WriteLine(localizer.Text.PressAnyKey);
         Console.ReadKey(true);
     }
 
-    // Complete game and get results
     protected ScoreEntry CompleteGame(Difficulty difficulty, int attempts, double durationSeconds, bool newGamePlus)
     {
-        Console.WriteLine(localizer.Get("WonMessage"));
-        Console.WriteLine(localizer.Get("TimeResult", durationSeconds));
-        Console.WriteLine(localizer.Get("EnterPlayerName"));
+        Console.WriteLine(localizer.Text.WonMessage);
+        Console.WriteLine(localizer.Text.TimeResult(durationSeconds));
+        Console.WriteLine(localizer.Text.EnterPlayerName);
 
         string? playerName = Console.ReadLine()?.Trim();
         if (string.IsNullOrWhiteSpace(playerName))

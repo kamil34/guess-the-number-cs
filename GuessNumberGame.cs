@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 
-// Standard Guess the Number game - player guesses a hidden number
 public class GuessNumberGame : GameBase
 {
     public GuessNumberGame(GameSettings settings, Localizer localizer)
@@ -9,7 +8,6 @@ public class GuessNumberGame : GameBase
     {
     }
 
-    // Number guessing game logic
     public override ScoreEntry? Play(Difficulty difficulty)
     {
         int maxValue = difficulty switch
@@ -23,30 +21,28 @@ public class GuessNumberGame : GameBase
         int secret = random.Next(1, maxValue + 1);
         int maxAttempts = int.MaxValue;
 
-        // Bet mode
         if (settings.AskBet)
         {
             Console.WriteLine();
-            Console.WriteLine(localizer.Get("AskBetQuestion"));
-            Console.WriteLine("1) " + localizer.Get("Yes"));
-            Console.WriteLine("2) " + localizer.Get("No"));
-            int betChoice = ReadInteger(localizer.Get("ChooseOption"), 1, 2);
+            Console.WriteLine(localizer.Text.AskBetQuestion);
+            Console.WriteLine("1) " + localizer.Text.Yes);
+            Console.WriteLine("2) " + localizer.Text.No);
+            int betChoice = ReadInteger(localizer.Text.ChooseOption, 1, 2);
             if (betChoice == 1)
             {
-                maxAttempts = ReadInteger(localizer.Get("EnterBetMaxAttempts"), 1, maxValue * 2);
+                maxAttempts = ReadInteger(localizer.Text.EnterBetMaxAttempts, 1, maxValue * 2);
             }
         }
 
-        // Game loop
         var stopwatch = Stopwatch.StartNew();
         int attemptNumber = 1;
 
         while (attemptNumber <= maxAttempts)
         {
             Console.Clear();
-            Console.WriteLine($"========== {localizer.Get(difficulty.ToString())} ==========");
-            Console.WriteLine(localizer.Get("AttemptNumber", attemptNumber));
-            int guess = ReadInteger(localizer.Get("EnterGuessPrompt"), 1, maxValue);
+            Console.WriteLine($"========== {localizer.GetDifficultyText(difficulty)} ==========");
+            Console.WriteLine(localizer.Text.AttemptNumber(attemptNumber));
+            int guess = ReadInteger(localizer.Text.EnterGuessPrompt, 1, maxValue);
 
             if (guess == secret)
             {
@@ -57,7 +53,7 @@ public class GuessNumberGame : GameBase
             Console.WriteLine(localizer.GetRandomGuessMessage(guess, secret));
             if (attemptNumber == maxAttempts)
             {
-                Console.WriteLine(localizer.Get("OutOfAttempts"));
+                Console.WriteLine(localizer.Text.OutOfAttempts);
                 Pause();
                 return null;
             }

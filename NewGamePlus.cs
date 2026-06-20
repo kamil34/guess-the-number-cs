@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 
-// New Game Plus mode - harder version with reshuffled secret number
 public class NewGamePlus : GameBase
 {
     public NewGamePlus(GameSettings settings, Localizer localizer)
@@ -9,7 +8,6 @@ public class NewGamePlus : GameBase
     {
     }
 
-    // New Game Plus mode logic
     public override ScoreEntry? Play(Difficulty difficulty)
     {
         int maxValue = difficulty switch
@@ -27,9 +25,9 @@ public class NewGamePlus : GameBase
         while (true)
         {
             Console.Clear();
-            Console.WriteLine($"========== {localizer.Get(difficulty.ToString())} - {localizer.Get("NewGamePlus")} ==========");
-            Console.WriteLine(localizer.Get("AttemptNumber", attemptNumber));
-            int guess = ReadInteger(localizer.Get("EnterGuessPrompt"), 1, maxValue);
+            Console.WriteLine($"========== {localizer.GetDifficultyText(difficulty)} - {localizer.Text.NewGamePlus} ==========");
+            Console.WriteLine(localizer.Text.AttemptNumber(attemptNumber));
+            int guess = ReadInteger(localizer.Text.EnterGuessPrompt, 1, maxValue);
 
             if (guess == secret)
             {
@@ -39,11 +37,10 @@ public class NewGamePlus : GameBase
 
             Console.WriteLine(localizer.GetRandomGuessMessage(guess, secret));
             
-            // Reshuffle number every 6, 7, or 8 attempts
             if (attemptNumber % 6 == 0 || attemptNumber % 7 == 0 || attemptNumber % 8 == 0)
             {
                 secret = random.Next(1, maxValue + 1);
-                Console.WriteLine(localizer.Get("SecretReshuffled"));
+                Console.WriteLine(localizer.Text.SecretReshuffled);
             }
 
             Pause();

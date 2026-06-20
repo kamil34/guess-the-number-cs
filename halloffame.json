@@ -1,4 +1,37 @@
 {
-  "entries": [],
-  "HasRecords": false
+  "entries": [
+    {
+      "PlayerName": "Kamil",
+      "Difficulty": 1,
+      "Attempts": 2,
+      "DurationSeconds": 2.3163935,
+      "NewGamePlus": false,
+      "Date": "2026-06-20T08:53:00.880184Z"
+    },
+    {
+      "PlayerName": "Kamil2",
+      "Difficulty": 1,
+      "Attempts": 21,
+      "DurationSeconds": 46.6088888,
+      "NewGamePlus": true,
+      "Date": "2026-06-20T08:53:58.764372Z"
+    },
+    {
+      "PlayerName": "Kamil3",
+      "Difficulty": 1,
+      "Attempts": 10,
+      "DurationSeconds": 17.138884,
+      "NewGamePlus": false,
+      "Date": "2026-06-20T08:54:43.690723Z"
+    },
+    {
+      "PlayerName": "Kamil4",
+      "Difficulty": 1,
+      "Attempts": 5,
+      "DurationSeconds": 8.5409158,
+      "NewGamePlus": true,
+      "Date": "2026-06-20T08:55:02.977595Z"
+    }
+  ],
+  "HasRecords": true
 }
